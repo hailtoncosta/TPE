@@ -1,0 +1,105 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+  layout:decorate="~{fragments/layout}">
+
+<!-- -------------------------- INICIO DO CORPO DA ESTRUTURA ---------------------------- -->
+<form layout:fragment="corpo" id="pesquisarusuario" th:action="@{/usuario/pesquisarusuario}" method="POST">
+  
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Lista de Usuários</h1>
+    </div><!-- End Page Title -->
+    <div class="search-bar col-4">
+      <input type="text" class="form-control" placeholder="Pesquisar usuário" title="Pressioner Enter"
+      id="nomepesquisa" name="nomepesquisa" th:value = "${nomepesquisa}">
+      <div class="input-group-append">
+        <button class="btn btn-success btnPesquisa" type="submit">Pesquisar</button>
+      </div>
+    </div>
+
+    <section class="section dashboard" style="margin-top: 1%;">
+      <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-12">
+          <div class="row">
+
+            <!-- Recent Sales -->
+            <div class="col-12">
+              <div class="card recent-sales overflow-auto">
+                <div class="card-body">
+                  <h5 class="card-title"></h5>
+
+                  <div class="card">
+                    <div class="card-body">
+                      <!-- Table with hoverable rows -->
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Congregação</th>
+                            <th scope="col">Telefone</th>
+                            <th scope="col">Email</th>
+                          </tr>
+                        </thead>
+                          <tr th:each="usuarios : ${listarusuarios}" style="font-size: 10pt; color: black;">
+                            <td th:text="${usuarios.id}"></td>
+                            <td th:text="${usuarios.nome}"></td>
+                            <td th:text="${usuarios.congregacao}"></td>
+                            <td th:text="${usuarios.telefone}"></td>
+                            <td th:text="${usuarios.email}"></td>
+                            <td>
+                              <a th:href="@{/usuario/alterarUsuario/{id}(id=${usuarios.id})}" 
+                              title="Editar">
+                                <i class="material-icons left" style="color: blue;">edit</i>
+                              </a>
+                            </td>
+                              
+                            <td>
+                              <a th:href="@{/usuario/deletarUsuario/{id}(id=${usuarios.id})}" title="Excluir"
+                              onclick="return confirmarExclusaoUsuario()? true : false;">
+                                <i class="material-icons left" style="color: blue;">delete</i>
+                              </a>
+
+                            </td>
+                          </tr>
+                      </table>
+                      <!-- End Table with hoverable rows -->
+        
+                    </div>
+                  </div>
+
+                  <div class="row" style="margin-top: 30px;">
+                    <center>
+                      <span th:if="${listarusuarios.hasPrevious()}"> <a
+                        th:href="@{/usuario/usuariopag(page=${listarusuarios.number-1}, size=${listarusuarios.size})}">Anterior</a>
+                      </span>
+            
+                      <th:block
+                        th:each="i : ${#numbers.sequence(0, listarusuarios.totalPages - 1)}">
+                        <a
+                          th:href="@{/usuario/usuariopag(page=${i}, size=${listarusuarios.size})}">[[
+                          ${i} + 1 ]]</a>
+                      </th:block>
+            
+                      <span th:if="${listarusuarios.hasNext()}"> <a
+                        th:href="@{/usuario/usuariopag(page=${listarusuarios.number+1}, size=${listarusuarios.size})}">Próximo</a>
+                      </span>
+                    </center>
+                  </div>
+
+
+                </div>
+
+                </div>
+              </div>
+            </div><!-- End Recent Sales -->
+          </div>
+        </div><!-- End Left side columns -->
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+</form>
+<!-- ------------------------------ FIM DO CORPO DA ESTRUTURA ------------------------------- -->

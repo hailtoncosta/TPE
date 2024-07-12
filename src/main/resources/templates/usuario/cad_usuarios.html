@@ -1,0 +1,97 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+  layout:decorate="~{fragments/layout}">
+
+<!-- -------------------------- INICIO DO CORPO DA ESTRUTURA ---------------------------- -->
+<form layout:fragment="corpo" th:action="@{/usuario/salvarUsuarios}" method="post" onsubmit="return validarCamposUsuarios()?true : false"
+th:object = "${objusuario}" style="background: #E0FFFF;">
+  
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Cadastro de Usuários</h1>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-12" >
+          <div class="row">
+
+            <!-- Recent Sales -->
+            <div class="col-12" style="background: #E0FFFF;">
+              <div class="card recent-sales overflow-auto">
+                <div class="card-body" style="background: #F0FFFF;">
+                  <h5 class="card-title"></h5>
+
+                  <div class="row mb-3">
+                    <div class="col-sm-12">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" th:field="*{nome}">
+                        <label for="nome">Nome</label>
+                        <small id="nome-error" style="color: red;"></small>
+                      </div>
+                    </div>
+                    
+                    <div class="col-sm-6">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="congregacao" name="congregacao" placeholder="Congregação" th:field="*{congregacao}">
+                        <label for="congregacao">Congregação</label>
+                        <small id="congregacao-error" style="color: red;"></small>
+                      </div>
+                    </div>
+                    
+                    <div class="col-sm-6">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Telefone" th:field="*{telefone}">
+                        <label for="floatingPassword">Telefone</label>
+                        <small id="telefone-error" style="color: red;"></small>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                      <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" th:field="*{email}">
+                        <label for="email">Email</label>
+                        <small id="email-error" style="color: red;"></small>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                      <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" th:field="*{password}">
+                        <label for="password">Password</label>
+                        <small id="password-error" style="color: red;"></small>
+                      </div>
+                    </div>
+
+                    <input type="hidden" id="id" name="id" th:field="*{id}">
+                      <!--
+                      <div class="col-md-12">
+                        <label for="inputState" class="form-label">Tipo de acesso</label>
+                        <select id="inputState" class="form-select">
+                          <option selected>Escolha uma opção...</option>
+                          <option>Administrador</option>
+                          <option>Usuário</option>
+                        </select>
+                      </div>
+                      -->
+
+                      <div class="text-center" style="margin-top: 5%" >
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        <button type="reset" class="btn btn-secondary">Cancelar</button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div><!-- End Recent Sales -->
+          </div>
+        </div><!-- End Left side columns -->
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+</form>
+<!-- ------------------------------ FIM DO CORPO DA ESTRUTURA ------------------------------- -->

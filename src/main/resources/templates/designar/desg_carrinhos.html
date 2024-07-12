@@ -1,0 +1,117 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+  layout:decorate="~{fragments/layout}">
+
+<!-- -------------------------- INICIO DO CORPO DA ESTRUTURA ---------------------------- -->
+<form layout:fragment="corpo" th:action="@{/designar/salvarDesigCarrinho}" method="post" onsubmit="return validarCamposProgramacao()?true : false"
+th:object = "${objdesgcarrinho}" style="background: #E0FFFF;">
+  
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Programar Carrinhos</h1>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-12" >
+          <div class="row">
+
+            <!-- Recent Sales -->
+            <div class="col-12" style="background: #E0FFFF;">
+              <div class="card recent-sales overflow-auto">
+                <div class="card-body" style="background: #F0FFFF;">
+                  <h5 class="card-title"></h5>
+
+                  
+                  <div class="orm-group col-md-12" >
+                    <label for="descricao">Carrinho</label>
+                    <select id="carrinho" name="carrinho" class="form-select" th:field="*{carrinho}" style="margin-top: 5px;">
+                      <option value="" selected>Selecione...</option>
+                      <option th:each = "lista : ${listacarrinhos}" th:value = "${lista.descricao}" th:text = "${lista.descricao}"></option>
+                    </select>
+                    <small id="carrinho-error" style="color: red;"></small>
+                  </div>
+
+                  <div class="orm-group col-md-12" style="margin-top: 15px;">
+                    <label for="dia">Dia</label>
+                    <select id="dia" name="dia" class="form-select" style="margin-top: 5px;" th:field="*{dia}">
+                      <option value="" selected>Selecione...</option>
+                      <option value="Segunda-feira">Segunda-feira</option>
+                      <option value="Terça-feira">Terça-feira</option>
+                      <option value="Quarta-feira">Quarta-feira</option>
+                      <option value="Quinta-feira">Quinta-feira</option>
+                      <option value="Sexta-feira">Sexta-feira</option>
+                      <option value="Sábado">Sábado</option>
+                      <option value="Domingo">Domingo</option>
+                    </select>
+                    <small id="dia-error" style="color: red;"></small>
+                  </div>
+
+                  <div class="orm-group col-md-12" style="margin-top: 15px;">
+                    <label for="horario">Horário</label>
+                    <select id="horario" name="horario" class="form-select" style="margin-top: 5px;" th:field="*{horario}">
+                      <option value="" selected>Selecione...</option>
+                      <option value="10:00 - 14:00">10:00 - 14:00</option>
+                      <option value="12:30 - 14:00">12:30 - 14:00</option>
+                      <option value="14:00 - 18:00">14:00 - 18:00</option>
+                      <option value="18:00 - 22:00">18:00 - 22:00</option>
+                    </select>
+                    <small id="horario-error" style="color: red;"></small>
+                  </div>
+                  
+                  <div class="orm-group col-md-12" style="margin-top: 15px;">
+                    <label for="usuario_um">Participante 1</label>
+                    <select id="usuario_um" name="usuario_um" class="form-select" th:field="*{usuario_um}" style="margin-top: 5px;">
+                      <option value="" selected>Selecione...</option>
+                      <option th:each = "lista : ${listausuarios}" th:value = "${lista.nome}" th:text = "${lista.nome}"></option>
+                    </select>
+                  </div>
+
+                  <div class="orm-group col-md-12" style="margin-top: 15px;">
+                    <label for="usuario_dois">Participante 2</label>
+                    <select id="usuario_dois" name="usuario_dois" class="form-select" th:field="*{usuario_dois}" style="margin-top: 5px;">
+                      <option value="" selected>Selecione...</option>
+                      <option th:each = "lista : ${listausuarios}" th:value = "${lista.nome}" th:text = "${lista.nome}"></option>
+                    </select>
+                  </div>
+
+                  <div class="orm-group col-md-12" style="margin-top: 15px;">
+                    <label for="usuario_tres">Participante 3</label>
+                    <select id="usuario_tres" name="usuario_tres" class="form-select" th:field="*{usuario_tres}" style="margin-top: 5px;">
+                      <option value="" selected>Selecione...</option>
+                      <option th:each = "lista : ${listausuarios}" th:value = "${lista.nome}" th:text = "${lista.nome}"></option>
+                    </select>
+                  </div>
+                  
+                    <input type="hidden" id="id" name="id" >
+                      <!--
+                      <div class="col-md-12">
+                        <label for="inputState" class="form-label">Tipo de acesso</label>
+                        <select id="inputState" class="form-select">
+                          <option selected>Escolha uma opção...</option>
+                          <option>Administrador</option>
+                          <option>Usuário</option>
+                        </select>
+                      </div>
+                      -->
+
+                      <div class="text-center" style="margin-top: 5%" >
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        <button type="reset" class="btn btn-secondary">Cancelar</button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div><!-- End Recent Sales -->
+          </div>
+        </div><!-- End Left side columns -->
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+</form>
+<!-- ------------------------------ FIM DO CORPO DA ESTRUTURA ------------------------------- -->

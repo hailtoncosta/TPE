@@ -1,0 +1,74 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+  layout:decorate="~{fragments/layout}">
+
+<!-- -------------------------- INICIO DO CORPO DA ESTRUTURA ---------------------------- -->
+<form layout:fragment="corpo" th:action="@{/carrinho/salvarcarrinhos}" method="post" onsubmit="return validarCamposCarrinhos()?true : false"
+th:object = "${objcarrinho}" style="background: #E0FFFF;">
+  
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Cadastro de Carrinhos</h1>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-12" >
+          <div class="row">
+
+            <!-- Recent Sales -->
+            <div class="col-12" style="background: #E0FFFF;">
+              <div class="card recent-sales overflow-auto">
+                <div class="card-body" style="background: #F0FFFF;">
+                  <h5 class="card-title"></h5>
+
+                  <div class="row mb-3">
+                    <div class="col-sm-12">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição" th:field="*{descricao}">
+                        <label for="descricao">Descrição</label>
+                        <small id="descricao-error" style="color: red;"></small>
+                      </div>
+                    </div>
+                    
+                    <div class="col-sm-12">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="local" name="local" placeholder="Local" th:field="*{local}">
+                        <label for="local">Local</label>
+                        <small id="local-error" style="color: red;"></small>
+                      </div>
+                    </div>
+
+                    <input type="hidden" id="id" name="id" th:field="*{id}">
+                    
+                      <!--
+                      <div class="col-md-12">
+                        <label for="inputState" class="form-label">Tipo de acesso</label>
+                        <select id="inputState" class="form-select">
+                          <option selected>Escolha uma opção...</option>
+                          <option>Administrador</option>
+                          <option>Usuário</option>
+                        </select>
+                      </div>
+                      -->
+
+                      <div class="text-center" style="margin-top: 5%" >
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        <button type="reset" class="btn btn-secondary">Cancelar</button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div><!-- End Recent Sales -->
+          </div>
+        </div><!-- End Left side columns -->
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+</form>
+<!-- ------------------------------ FIM DO CORPO DA ESTRUTURA ------------------------------- -->
