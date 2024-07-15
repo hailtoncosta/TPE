@@ -1,9 +1,10 @@
 package br.tpe.testemunho_publico.Usuarios.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +17,16 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public List<UsuarioModel> listarUsuarios() {
-        return (List<UsuarioModel>) usuarioRepository.findAll(Sort.by("nome"));
+    public Page<UsuarioModel> listarUsuarios(int pageNumber) {
+        return usuarioRepository.findAll(PageRequest.of(pageNumber - 1, 10, Sort.by("nome")));
     }
 
     public UsuarioModel salvarUsuarios(UsuarioModel usuarioModel) {
-        return usuarioRepository.saveAndFlush(usuarioModel);
+        return usuarioRepository.save(usuarioModel);
+    }
+
+    public void atualizarUsuarios(UsuarioModel usuarioModel) {
+        usuarioRepository.save(usuarioModel);
     }
 
     public Optional<UsuarioModel> findUserById(Long id) {
@@ -32,5 +37,4 @@ public class UsuarioService {
         usuarioRepository.deleteById(id);
     }
 
-    
 }

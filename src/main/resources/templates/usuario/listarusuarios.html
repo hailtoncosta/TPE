@@ -9,14 +9,17 @@
     <div class="pagetitle">
       <h1>Lista de Usuários</h1>
     </div><!-- End Page Title -->
-    <div class="search-bar col-4">
-      <input type="text" class="form-control" placeholder="Pesquisar usuário" title="Pressioner Enter"
-      id="nomepesquisa" name="nomepesquisa" th:value = "${nomepesquisa}">
-      <div class="input-group-append">
-        <button class="btn btn-success btnPesquisa" type="submit">Pesquisar</button>
+    <div class="row">
+        <div class="search-bar col-3">
+          <input type="text" class="form-control" placeholder="Pesquisar usuário" title="Pressioner Enter"
+          id="nomepesquisa" name="nomepesquisa" th:value = "${nomepesquisa}">
+        </div>
+        <div class="search-bar col-4">
+          <div class="input-group-append">
+            <button class="btn btn-success btnPesquisa" type="submit">Pesquisar</button>
+          </div>
+        </div>
       </div>
-    </div>
-
     <section class="section dashboard" style="margin-top: 1%;">
       <div class="row">
 
@@ -73,18 +76,18 @@
                   <div class="row" style="margin-top: 30px;">
                     <center>
                       <span th:if="${listarusuarios.hasPrevious()}"> <a
-                        th:href="@{/usuario/usuariopag(page=${listarusuarios.number-1}, size=${listarusuarios.size})}">Anterior</a>
+                        th:href="@{/usuario/usuariopag(page=${listarusuarios.number-1}, size=${listarusuarios.size}, nomepesquisa=${nomepesquisa})}">Anterior</a>
                       </span>
             
                       <th:block
                         th:each="i : ${#numbers.sequence(0, listarusuarios.totalPages - 1)}">
                         <a
-                          th:href="@{/usuario/usuariopag(page=${i}, size=${listarusuarios.size})}">[[
+                          th:href="@{/usuario/usuariopag(page=${i}, size=${listarusuarios.size}, nomepesquisa=${nomepesquisa})}">[[
                           ${i} + 1 ]]</a>
                       </th:block>
             
                       <span th:if="${listarusuarios.hasNext()}"> <a
-                        th:href="@{/usuario/usuariopag(page=${listarusuarios.number+1}, size=${listarusuarios.size})}">Próximo</a>
+                        th:href="@{/usuario/usuariopag(page=${listarusuarios.number+1}, size=${listarusuarios.size}, nomepesquisa=${nomepesquisa})}">Próximo</a>
                       </span>
                     </center>
                   </div>

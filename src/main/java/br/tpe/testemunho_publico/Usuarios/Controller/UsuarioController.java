@@ -38,7 +38,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/listarusuarios")
-    public ModelAndView ListarUsuario() {
+    public ModelAndView listarUsuario() {
         ModelAndView modelAndView = new ModelAndView("usuario/listarusuarios");
         modelAndView.addObject("listarusuarios", usuarioRepository.findAll(PageRequest.of(0, 10, Sort.by("nome"))));
         return modelAndView;
@@ -80,12 +80,11 @@ public class UsuarioController {
 
         Page<UsuarioModel> usuarios = null;
 
-        usuarios = usuarioRepository.findUsuarioByName(nomepesquisa, pageable);
+        usuarios = usuarioRepository.findUsuarioByNamePage(nomepesquisa, pageable);
 
         ModelAndView modelAndView = new ModelAndView("usuario/listarusuarios");
-
+        modelAndView.addObject("listarusuarios", usuarios);
         modelAndView.addObject("objusuario", new UsuarioModel());
-        modelAndView.addObject("listarusuario", usuarios);
         modelAndView.addObject("nomepesquisa", nomepesquisa);
 
         return modelAndView;
