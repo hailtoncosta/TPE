@@ -48,20 +48,19 @@
                         </thead>
                           <tr th:each="usuarios : ${listarusuarios}" style="font-size: 10pt; color: black;">
                             <td th:text="${usuarios.id}"></td>
-                            <td th:text="${usuarios.nome}"></td>
+                            <td><a th:href="@{/usuario/dadosusuario/{id}(id=${usuarios.id})}"><span  th:text="${usuarios.nome}"></span></a></td>
                             <td th:text="${usuarios.congregacao}"></td>
                             <td th:text="${usuarios.telefone}"></td>
                             <td th:text="${usuarios.email}"></td>
                             <td>
-                              <a th:href="@{/usuario/alterarUsuario/{id}(id=${usuarios.id})}" 
-                              title="Editar">
+                              <a th:href="@{/usuario/alterarUsuario/{id}(id=${usuarios.id})}" title="Editar">
                                 <i class="material-icons left" style="color: blue;">edit</i>
                               </a>
                             </td>
                               
                             <td>
                               <a th:href="@{/usuario/deletarUsuario/{id}(id=${usuarios.id})}" title="Excluir"
-                              onclick="return confirmarExclusaoUsuario()? true : false;">
+                                  onclick="return confirmarExclusaoUsuario()? true : false;">
                                 <i class="material-icons left" style="color: blue;">delete</i>
                               </a>
 

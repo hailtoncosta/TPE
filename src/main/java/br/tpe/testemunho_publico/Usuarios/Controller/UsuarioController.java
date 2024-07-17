@@ -37,6 +37,15 @@ public class UsuarioController {
         return modelAndView;
     }
 
+    @GetMapping("/dadosusuario/{id}")
+    public ModelAndView dadosUsuario(@PathVariable("id") Long id) {
+        Optional<UsuarioModel> usuario = usuarioRepository.findById(id);
+        ModelAndView modelAndView = new ModelAndView("usuario/dadosusuario");
+        modelAndView.addObject("objusuario", new UsuarioModel());
+        modelAndView.addObject("objusuario", usuario.get());
+        return modelAndView;
+    }
+
     @GetMapping("/listarusuarios")
     public ModelAndView listarUsuario() {
         ModelAndView modelAndView = new ModelAndView("usuario/listarusuarios");

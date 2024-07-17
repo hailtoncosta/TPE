@@ -85,17 +85,7 @@ th:object = "${objdesgcarrinho}" style="background: #E0FFFF;">
                     </select>
                   </div>
                   
-                    <input type="hidden" id="id" name="id" >
-                      <!--
-                      <div class="col-md-12">
-                        <label for="inputState" class="form-label">Tipo de acesso</label>
-                        <select id="inputState" class="form-select">
-                          <option selected>Escolha uma opção...</option>
-                          <option>Administrador</option>
-                          <option>Usuário</option>
-                        </select>
-                      </div>
-                      -->
+                    <input type="hidden" id="id" name="id" th:field="*{id}">
 
                       <div class="text-center" style="margin-top: 5%" >
                         <button type="submit" class="btn btn-primary">Salvar</button>
